@@ -14,6 +14,7 @@ This example shows how to create and manage an organizations, issuers, and schem
 Local Development
 
 ```bash
+cp .env.example .env;
 yarn install;
 yarn dev;
 ```
