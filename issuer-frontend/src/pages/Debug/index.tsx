@@ -15,7 +15,7 @@ import Sidebar from "../../components/Sidebar";
 // ========================================================
 const DebugPage = () => {
     // State / Props
-    const existingHeaders = JSON.parse(localStorage.getItem('headers') || `[{ key: '', value: '' }]`);
+    const existingHeaders = localStorage.getItem('headers') ? JSON.parse(localStorage.getItem('headers') as string) : [{ key: '', value: '' }];
     const [headers, setHeaders] = useState<{ [key: string]: any; }[]>(existingHeaders);
     const [debugs, setDebugs] = useState<any[]>([]);
 
