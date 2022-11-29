@@ -1,5 +1,6 @@
 // Imports
 // ========================================================
+import axios from 'axios';
 
 // Config
 // ========================================================
@@ -37,17 +38,30 @@ const api = {
                 body: JSON.stringify(payload?.payload)
             }
         ),
-        signin: ({ headers, ...payload }: { headers?: { [key: string]: any }[]; payload: any }) => fetch(
-            `${API_URL}/orgs/sign-in`,
-            {
-                ...fetchConfig,
+        signin: ({ headers, ...payload }: { headers?: { [key: string]: any }[]; payload: any }) => {
+            // Axios Implementation
+            return axios({
+                url: `${API_URL}/orgs/sign-in`,
+                method: 'POST',
+                data: JSON.stringify(payload.payload),
                 headers: {
                     ...fetchConfig.headers,
                     ...headerArrayToObject(headers || [])
                 },
-                body: JSON.stringify(payload?.payload)
-            }
-        ),
+            });
+            // Fetch Implementation
+            // return fetch(
+            //     `${API_URL}/orgs/sign-in`,
+            //     {
+            //         ...fetchConfig,
+            //         headers: {
+            //             ...fetchConfig.headers,
+            //             ...headerArrayToObject(headers || [])
+            //         },
+            //         body: JSON.stringify(payload?.payload)
+            //     }
+            // )
+        },
         activate: ({ headers, ...payload }: { headers?: { [key: string]: any }[]; payload: any }) => fetch(
             `${API_URL}/orgs/activate`,
             {
