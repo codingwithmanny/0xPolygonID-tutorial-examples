@@ -1,22 +1,22 @@
 {
-  "name": "on-chain-verification-test",
+  "name": "on-chain-verification",
+  "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "A monorepo to demonstrate on-chain verification",
   "main": "index.js",
+  "author": "@codingwithmanny",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@nomiclabs/hardhat-waffle": "^2.0.3",
-    "@openzeppelin/contracts": "^4.7.3",
-    "dotenv": "^16.0.2",
-    "solidity-bytes-utils": "^0.8.0"
+    "compile": "./node_modules/.bin/lerna run compile --scope=on-chain-verification-contract",
+    "deploy": "./node_modules/.bin/lerna run deploy --scope=on-chain-verification-contract",
+    "verify": "./node_modules/.bin/hardhat verify --config \"./packages/contract/hardhat.config.ts\" --network mumbai",
+    "setZKPRequest": "./node_modules/.bin/lerna run setZKPRequest --scope=on-chain-verification-contract",
+    "dev": "./node_modules/.bin/lerna run dev --scope=on-chain-verification-frontend"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
-    "hardhat": "^2.11.2"
-  }
+    "lerna": "^6.1.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

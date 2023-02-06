@@ -1,19 +1,26 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+// Imports
+// ========================================================
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "../interfaces/ICircuitValidator.sol";
 import "../interfaces/IZKPVerifier.sol";
 
+// Contract
+// ========================================================
 contract ZKPVerifier is IZKPVerifier, Ownable {
+    // Variables
     // msg.sender-> ( requestID -> is proof given )
     mapping(address => mapping(uint64 => bool)) public proofs;
-
     mapping(uint64 => ICircuitValidator.CircuitQuery) public requestQueries;
     mapping(uint64 => ICircuitValidator) public requestValidators;
-
     uint64[] public supportedRequests;
 
+    // Functions
+    /**
+     * @dev submitZKPResponse
+     */
     function submitZKPResponse(
         uint64 requestId,
         uint256[] memory inputs,
@@ -49,6 +56,9 @@ contract ZKPVerifier is IZKPVerifier, Ownable {
         return true;
     }
 
+    /**
+     * @dev getZKPRequest
+     */
     function getZKPRequest(uint64 requestId)
         external
         view
@@ -58,6 +68,9 @@ contract ZKPVerifier is IZKPVerifier, Ownable {
         return requestQueries[requestId];
     }
 
+    /**
+     * @dev setZKPRequest
+     */
     function setZKPRequest(
         uint64 requestId,
         ICircuitValidator validator,
@@ -78,6 +91,9 @@ contract ZKPVerifier is IZKPVerifier, Ownable {
         return true;
     }
 
+    /**
+     * @dev getSupportedRequests
+     */
     function getSupportedRequests()
         external
         view

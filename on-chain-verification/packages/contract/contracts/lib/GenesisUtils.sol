@@ -1,8 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.0;
 
+// Imports
+// ========================================================
 import "solidity-bytes-utils/contracts/BytesLib.sol";
 
+// Library
+// ========================================================
 library GenesisUtils {
     /**
      * @dev int256ToBytes
